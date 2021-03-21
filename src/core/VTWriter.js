@@ -119,7 +119,7 @@ class VTWriter {
 
 		const self = this;
 
-		return self.db.run(`UPDATE images SET tile_data=(?) WHERE tile_id=(SELECT tile_id FROM map WHERE zoom_level=${zoom_level} AND tile_row=${tile_row} AND tile_column=${tile_column} LIMIT 1)`, data);
+		return self.db.run(`UPDATE tiles SET tile_data=(?) WHERE zoom_level=${zoom_level} AND tile_row=${tile_row} AND tile_column=${tile_column}`, data);
 
 	}
 
@@ -127,7 +127,7 @@ class VTWriter {
 
 		const self = this;
 
-		return self.db.run(`DELETE FROM images WHERE tile_id=(SELECT tile_id FROM map WHERE zoom_level=${zoom_level} AND tile_row=${tile_row} AND tile_column=${tile_column} LIMIT 1)`);
+		return self.db.run(`DELETE FROM tiles WHERE zoom_level=${zoom_level} AND tile_row=${tile_row} AND tile_column=${tile_column}`);
 
 	}
 
